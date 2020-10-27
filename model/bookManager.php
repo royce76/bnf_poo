@@ -18,22 +18,26 @@ class BookManager {
 
   // Récupère tous les livres
   public function getBooks() {
-    return  "coucou";
+    $query = $this->getDb()->query(
+      "SELECT isbn, title, author, publisher, bookType, identificationBook, userId FROM Book"
+    );
+    $title_book = $query->fetchAll(PDO::FETCH_CLASS, "Book");
+    return $title_book;
   }
 
   // Récupère un livre
   public function getBook() {
-    return  "coucou";
+
   }
 
   // Ajoute un nouveau livre
   public function addBook() {
-    return  "coucou";
+
   }
 
   // Met à jour le statut d'un livre emprunté
   public function updateBookStatus() {
-    return  "coucou";
+
   }
 
 }
