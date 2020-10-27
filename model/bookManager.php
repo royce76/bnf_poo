@@ -19,15 +19,35 @@ class BookManager {
   // Récupère tous les livres
   public function getBooks() {
     $query = $this->getDb()->query(
-      "SELECT isbn, title, author, publisher, bookType, identificationBook, userId FROM Book"
+      "SELECT id, isbn, title, author, publisher, bookType, identificationBook, userId FROM Book"
     );
     $title_book = $query->fetchAll(PDO::FETCH_CLASS, "Book");
     return $title_book;
   }
 
   // Récupère un livre
-  public function getBook() {
+  public function getBookByGetId() {
+    $query = $this->getDb()->prepare(
+      "SELECT *
+      FROM Book
+      WHERE id = :id"
+    );
+    $result = $query->execute([
+      "id" => $_GET["id"]
+    ]);
+    $book = $query->fetchAll(PDO::FETCH_CLASS, "Book")[0];
+    return $book;
+  }
 
+  public function deleteBook() {
+    $query = $this->getDb()->prepare(
+      "DELETE FROM book
+      WHERE id = :id"
+    );
+    $result = $query->execute([
+      "id" => $_GET["id"]
+    ]);
+    return $result;
   }
 
   // Ajoute un nouveau livre

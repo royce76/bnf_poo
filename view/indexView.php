@@ -17,6 +17,7 @@ include 'view/template/header.php';
           <th scope="col">Editeur</th>
           <th scope="col">Type</th>
           <th scope="col">Statut</th>
+          <th scope="col">Détails</th>
         </tr>
       </thead>
       <tbody>
@@ -33,6 +34,7 @@ include 'view/template/header.php';
             <?php else: ?>
               <td><span class="badge badge-pill badge-success">Libre</span></td>
             <?php endif; ?>
+            <td><a href=<?="book.php?id={$book->getId()}"?> class="badge badge-pill badge-info">Voir</td>
           </tr>
         <?php endforeach; ?>
       </tbody>
