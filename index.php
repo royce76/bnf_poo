@@ -1,10 +1,7 @@
 <?php
-// Controlleur qui gérer l'affichage de tous les livres
 require 'model/Database.php';
 require 'model/BookManager.php';
 require 'model/entity/Book.php';
-require 'model/entity/User.php';
-require 'model/UserManager.php';
 
 function test_input($data) {
   $data = trim($data); // remove space of both side
@@ -15,17 +12,29 @@ function test_input($data) {
 
 $book_manager = new BookManager();
 $list_book = $book_manager->getBooks();
-$user_manager = new UserManager();
 
+$error = "";
+$entries = array_filter($_POST);
 //Look for form addBook
 if (isset($_POST["Ajouter"]) && !empty($_POST["Ajouter"])) {
   foreach ($_POST as $key => $value) {
     $_POST[$key] = test_input($_POST[$key]);
   }
-  $book = new Book($_POST);
-  $book_manager->addBook($book);
-  header("Location: index.php");
-  exit();
+  if (count($entries) === count($_POST)) {
+    try {
+      $book = new Book($_POST);
+    } catch (\Exception $e) {
+      $error = $e->getMessage();
+    }
+    if (empty($error)) {
+      $book_manager->addBook($book);
+      header("Location: index.php");
+      exit();
+    }
+  }
+  else {
+    $error = "Les champs ne sont pas tous remplis.";
+  }
 }
 
 

@@ -18,7 +18,7 @@ class UserManager {
 
 
   // Récupère tous les utilisateurs
-  public function getUsers() {
+  public function getUsers():?array {
     $query = $this->getDb()->query(
       "SELECT * FROM User"
     );
@@ -27,7 +27,7 @@ class UserManager {
   }
 
   // Récupère un utilisateur par son id
-  public function getUserById() {
+  public function getUserById():User {
     $query= $this->getDb()->prepare(
       "SELECT *
       FROM User
@@ -41,7 +41,7 @@ class UserManager {
   }
 
   // Récupère un utilisateur par son code personnel
-  public function getUser(User $user_identification) {
+  public function getUser(User $user_identification):User {
     $query = $this->getDb()->prepare(
       "SELECT *
       FROM User
@@ -54,7 +54,8 @@ class UserManager {
     return $user_by_identification;
   }
 
-  public function getUserBook(Book $book) {
+  //Récupère le user en fonction du livre à book.php
+  public function getUserBook(Book $book):?array {
     $query = $this->getDb()->prepare(
       "SELECT u.id, lastname, identificationUser, b.userId, b.id
       FROM User AS u
@@ -64,7 +65,7 @@ class UserManager {
     $result = $query->execute([
       "id" => $_GET["id"]
     ]);
-    $user_book = $query->fetchAll(PDO::FETCH_CLASS, "User")[0];
+    $user_book = $query->fetchAll(PDO::FETCH_CLASS, "User");
     return $user_book;
   }
 }

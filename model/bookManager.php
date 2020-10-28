@@ -17,7 +17,7 @@ class BookManager {
   }
 
   // Récupère tous les livres
-  public function getBooks() {
+  public function getBooks():?array {
     $query = $this->getDb()->query(
       "SELECT id, isbn, title, author, publisher, bookType, identificationBook, userId FROM Book"
     );
@@ -26,7 +26,7 @@ class BookManager {
   }
 
   // Récupère un livre
-  public function getBookByGetId() {
+  public function getBookByGetId():Book {
     $query = $this->getDb()->prepare(
       "SELECT *
       FROM Book
@@ -39,7 +39,7 @@ class BookManager {
     return $book;
   }
 
-  public function deleteBook() {
+  public function deleteBook():bool {
     $query = $this->getDb()->prepare(
       "DELETE FROM book
       WHERE id = :id"
@@ -101,7 +101,7 @@ class BookManager {
   }
 
   //On récupère sur index.php un livre en rentrant son identifiant
-  public function getBookUser(User $user) {
+  public function getBookUser(User $user):Book {
     $query = $this->getDb()->prepare(
       "SELECT lastname, identificationUser, b.userId, b.title, b.identificationBook, b.author
       FROM User AS u
