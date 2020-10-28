@@ -2,7 +2,7 @@
 // Classe représetant les utilisateurs stockés en base de données
 class User {
 
-  const SEX = [h, f];
+  const SEX = ["h", "f"];
 
   protected int $id;
   protected string $lastname;
@@ -13,7 +13,8 @@ class User {
   protected string $adress;
   protected string $sex;
   protected string $birthDate;
-  protected int $identification;
+  protected string $borrowingDate;
+  protected int $identificationUser;
 
   public function setId(int $id):self {
     $this->id = $id;
@@ -98,13 +99,22 @@ class User {
     return $this->birthDate;
   }
 
-  public function setIdentification(string $identification):self {
-    $this->identification = $identification;
+  public function setBorrowingDate(string $borrowingDate):self {
+    $this->borrowingDate = $borrowingDate;
     return $this;
   }
 
-  public function getIdentification() {
-    return $this->identification;
+  public function getBorrowingDate() {
+    return $this->borrowingDate;
+  }
+
+  public function setIdentificationUser(string $identificationUser):self {
+    $this->identificationUser = $identificationUser;
+    return $this;
+  }
+
+  public function getIdentificationUser() {
+    return $this->identificationUser;
   }
 
   private function hydrate(array $data) {
