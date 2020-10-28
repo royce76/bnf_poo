@@ -21,14 +21,21 @@ if (isset($_POST["delete"])) {
     exit();
   }
 }
-
+$error = "";
 //update book lending
 if (isset($_POST["bookLend"])) {
-  $user = new User($_POST);
-  $user = $user_manager->getUser($user);
-  $book_manager->updateBookStatus($user);
-  header("Location: index.php");
-  exit();
+  try {
+    $user = new User($_POST);
+  } catch (\Exception $e) {
+    $error = $e->getMessage();
+  }
+  if (empty($error)) {
+    $user = $user_manager->getUser($user);
+    $book_manager->updateBookStatus($user);
+    header("Location: index.php");
+    exit();
+  }
+  $error = "Identifiant non reconnu.";
 }
 
 //update book back

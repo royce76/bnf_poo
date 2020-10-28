@@ -3,7 +3,7 @@
 class Book {
 
   protected int $id;
-  protected int $isbn;
+  protected string $isbn;
   protected string $title;
   protected string $author;
   protected string $publisher;
@@ -13,7 +13,7 @@ class Book {
   protected int $quantity;
   protected string $bookType;
   protected string $bookNature;
-  protected int $identificationBook;
+  protected string $identificationBook;
   protected ?int $userId;
 
   public function setId(int $id):self {
@@ -25,9 +25,12 @@ class Book {
     return $this->id;
   }
 
-  public function setIsbn(int $isbn):self {
-    $this->isbn = $isbn;
-    return $this;
+  public function setIsbn(string $isbn):self {
+    if (preg_match("/^[0-9]{13}$/",$isbn)) {
+      $this->isbn = $isbn;
+      return $this;
+    }
+    throw new Exception("<li>L'isbn contient 13 chiffres exactement</li>");
   }
 
   public function getIsbn() {
@@ -35,8 +38,11 @@ class Book {
   }
 
   public function setTitle(string $title):self {
-    $this->title = $title;
-    return $this;
+    if (preg_match("/^[a-zA-Z-' ]{2,100}$/",$title)) {
+      $this->title = $title;
+      return $this;
+    }
+    throw new Exception("<li>Titre entre 2 et 100 caractères</li>");
   }
 
   public function getTitle() {
@@ -44,8 +50,11 @@ class Book {
   }
 
   public function setAuthor(string $author):self {
-    $this->author = $author;
-    return $this;
+    if (preg_match("/^[a-zA-Z-' ]{2,100}$/",$author)) {
+      $this->author = $author;
+      return $this;
+    }
+    throw new Exception("<li>Auteur entre 2 et 100 caractères</li>");
   }
 
   public function getAuthor() {
@@ -53,8 +62,11 @@ class Book {
   }
 
   public function setPublisher(string $publisher):self {
-    $this->publisher = $publisher;
-    return $this;
+    if (preg_match("/^[a-zA-Z-' ]{2,100}$/",$publisher)) {
+      $this->publisher = $publisher;
+      return $this;
+    }
+    throw new Exception("<li>Editeur entre 2 et 100 caractères</li>");
   }
 
   public function getPublisher() {
@@ -62,8 +74,11 @@ class Book {
   }
 
   public function setPublicationYear(string $publicationYear):self {
-    $this->publicationYear = $publicationYear;
-    return $this;
+    if (preg_match("/^[0-9]{4}$/",$publicationYear)) {
+      $this->publicationYear = $publicationYear;
+      return $this;
+    }
+    throw new Exception("<li>Année non conforme</li>");
   }
 
   public function getPublicationYear() {
@@ -71,8 +86,11 @@ class Book {
   }
 
   public function setPagesNumber(int $pagesNumber):self {
-    $this->pagesNumber = $pagesNumber;
-    return $this;
+    if (preg_match("/^[0-9]{1,4}$/",$pagesNumber)) {
+      $this->pagesNumber = $pagesNumber;
+      return $this;
+    }
+    throw new Exception("<li>Nombre de page non conforme</li>");
   }
 
   public function getPagesNumber() {
@@ -80,8 +98,11 @@ class Book {
   }
 
   public function setSummary(string $summary):self {
-    $this->summary = $summary;
-    return $this;
+    if (preg_match("/^[a-zA-Z-' ]{2,500}$/",$summary)) {
+      $this->summary = $summary;
+      return $this;
+    }
+    throw new Exception("<li>Résumé entre 2 et 500 caractères.</li>");
   }
 
   public function getSummary() {
@@ -89,8 +110,11 @@ class Book {
   }
 
   public function setQuantity(int $quantity):self {
-    $this->quantity = $quantity;
-    return $this;
+    if (preg_match("/^[0-9]{1,2}$/",$quantity)) {
+      $this->quantity = $quantity;
+      return $this;
+    }
+    throw new Exception("<li>Quantité hors norme.</li>");
   }
 
   public function getQuantity() {
@@ -98,8 +122,11 @@ class Book {
   }
 
   public function setBookType(string $bookType):self {
-    $this->bookType = $bookType;
-    return $this;
+    if (preg_match("/^[a-zA-Z-' ]{2,50}$/",$bookType)) {
+      $this->bookType = $bookType;
+      return $this;
+    }
+    throw new Exception("<li>Type entre 2 et 50 caractères</li>");
   }
 
   public function getBookType() {
@@ -107,17 +134,23 @@ class Book {
   }
 
   public function setBookNature(string $bookNature):self {
-    $this->bookNature = $bookNature;
-    return $this;
+    if (preg_match("/^[a-zA-Z-' ]{2,50}$/",$bookNature)) {
+      $this->bookNature = $bookNature;
+      return $this;
+    }
+    throw new Exception("<li>Nature entre 2 et 50 caractères</li>");
   }
 
   public function getBookNature() {
     return $this->bookNature;
   }
 
-  public function setIdentificationBook(int $identificationBook):self {
-    $this->identificationBook = $identificationBook;
-    return $this;
+  public function setIdentificationBook(string $identificationBook):self {
+    if (preg_match("/^[0-9]{10}$/",$identificationBook)) {
+      $this->identificationBook = $identificationBook;
+      return $this;
+    }
+    throw new Exception("<li>10 chiffres exactements</li>");
   }
 
   public function getIdentificationBook() {
