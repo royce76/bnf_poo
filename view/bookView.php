@@ -26,7 +26,12 @@ include 'view/template/header.php';
           <form action="" method="POST">
             <div class="form-group">
               <input type="submit" class="btn btn-primary" name="delete" value="Supprimer" disabled>
-              <small><?="En cours d'emprunt"?></small>
+              <div class="">
+                <ul>
+                  <li><?="L'abonnée : {$user_book->getLastname()} a emprunter ce livre"?></li>
+                  <li><?="identifiant : {$user_book->getidentificationUser()}"?></li>
+                </ul>
+              </div>
             </div>
           </form>
           <form action="" method="POST">
@@ -40,6 +45,9 @@ include 'view/template/header.php';
             <button type="submit" class="btn btn-primary mb-2" name="bookBack">Mettre à jour</button>
           </form>
         <?php else: ?>
+          <div class="">
+            <small><?="Aucun emprunt en cours"?></small>
+          </div>
           <form action="" method="POST">
             <div class="form-group">
               <input type="submit" class="btn btn-primary" name="delete" value="Supprimer">

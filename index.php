@@ -3,6 +3,8 @@
 require 'model/Database.php';
 require 'model/BookManager.php';
 require 'model/entity/Book.php';
+require 'model/entity/User.php';
+require 'model/UserManager.php';
 
 function test_input($data) {
   $data = trim($data); // remove space of both side
@@ -13,6 +15,7 @@ function test_input($data) {
 
 $book_manager = new BookManager();
 $list_book = $book_manager->getBooks();
+$user_manager = new UserManager();
 
 //Look for form addBook
 if (isset($_POST["Ajouter"]) && !empty($_POST["Ajouter"])) {
@@ -23,9 +26,7 @@ if (isset($_POST["Ajouter"]) && !empty($_POST["Ajouter"])) {
   $book_manager->addBook($book);
   header("Location: index.php");
   exit();
-
 }
-
 
 
 include "View/indexView.php";
