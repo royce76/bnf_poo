@@ -11,6 +11,8 @@ $book = $book_manager->getBookByGetId();
 
 $user_manager = new UserManager();
 
+$user_book = $user_manager->getUserBook($book);
+
 //Delete book
 if (isset($_POST["delete"])) {
   $delete_book = $book_manager->deleteBook();

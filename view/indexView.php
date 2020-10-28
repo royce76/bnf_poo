@@ -3,7 +3,6 @@ include 'view/template/nav.php';
 include 'view/template/header.php';
 ?>
 
-<p>Vos livre au catalogue s'affichent sur cette page</p>
 <section class="container">
   <div class="row">
     <h3 class="col-10 mx-auto my-4 text-center">Catalogue de livres</h3>

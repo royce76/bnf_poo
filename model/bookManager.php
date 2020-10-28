@@ -99,4 +99,20 @@ class BookManager {
     ]);
     return $result;
   }
+
+  //On récupère sur index.php un livre en rentrant son identifiant
+  public function getBookUser(User $user) {
+    $query = $this->getDb()->prepare(
+      "SELECT lastname, identificationUser, b.userId, b.title, b.identificationBook, b.author
+      FROM User AS u
+      RIGHT JOIN Book AS b
+      ON b.userId = :idUser"
+    );
+    $result = $query->execute([
+      "idUser" => $user->getId()
+    ]);
+    $user_book = $query->fetchAll(PDO::FETCH_CLASS, "Book")[0];
+    return $user_book;
+  }
+
 }

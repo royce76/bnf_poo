@@ -18,13 +18,7 @@
             <a class="nav-link active" href="index.php">Accueil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="book.php">book</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="user.php">user</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="users.php">users</a>
+            <a class="nav-link" href="users.php">Abonnées</a>
           </li>
         </ul>
       </nav>

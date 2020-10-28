@@ -19,12 +19,25 @@ class UserManager {
 
   // Récupère tous les utilisateurs
   public function getUsers() {
-    return  "coucou";
+    $query = $this->getDb()->query(
+      "SELECT * FROM User"
+    );
+    $users = $query->fetchAll(PDO::FETCH_CLASS,"User");
+    return $users;
   }
 
   // Récupère un utilisateur par son id
   public function getUserById() {
-    return  "coucou";
+    $query= $this->getDb()->prepare(
+      "SELECT *
+      FROM User
+      WHERE id=:id"
+    );
+    $result = $query->execute([
+      "id" => $_GET["id"]
+    ]);
+    $user_by_id = $query->fetchAll(PDO::FETCH_CLASS,"User")[0];
+    return $user_by_id;
   }
 
   // Récupère un utilisateur par son code personnel
@@ -39,5 +52,19 @@ class UserManager {
     ]);
     $user_by_identification = $query->fetchAll(PDO::FETCH_CLASS, "User")[0];
     return $user_by_identification;
+  }
+
+  public function getUserBook(Book $book) {
+    $query = $this->getDb()->prepare(
+      "SELECT u.id, lastname, identificationUser, b.userId, b.id
+      FROM User AS u
+      INNER JOIN Book AS b
+      ON u.id = b.userId AND b.id = :id"
+    );
+    $result = $query->execute([
+      "id" => $_GET["id"]
+    ]);
+    $user_book = $query->fetchAll(PDO::FETCH_CLASS, "User")[0];
+    return $user_book;
   }
 }
