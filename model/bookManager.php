@@ -74,8 +74,29 @@ class BookManager {
   }
 
   // Met à jour le statut d'un livre emprunté
-  public function updateBookStatus() {
-
+  public function updateBookStatus(User $user):bool {
+    $query = $this->getDb()->prepare(
+      "UPDATE book
+      SET userId = :userId
+      WHERE id = :id"
+    );
+    $result = $query->execute([
+      "id" => $_GET["id"],
+      "userId" => $user->getId()
+    ]);
+    return $result;
   }
 
+  // Met à jour le statut d'un livre rendu
+  public function updateBookStatusBack():bool {
+    $query = $this->getDb()->prepare(
+      "UPDATE book
+      SET userId = null
+      WHERE id = :id"
+    );
+    $result = $query->execute([
+      "id" => $_GET["id"]
+    ]);
+    return $result;
+  }
 }

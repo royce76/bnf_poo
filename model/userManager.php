@@ -16,7 +16,7 @@ class UserManager {
     return $this->_db;
   }
 
-  
+
   // Récupère tous les utilisateurs
   public function getUsers() {
     return  "coucou";
@@ -28,7 +28,16 @@ class UserManager {
   }
 
   // Récupère un utilisateur par son code personnel
-  public function getUser() {
-    return  "coucou";
+  public function getUser(User $user_identification) {
+    $query = $this->getDb()->prepare(
+      "SELECT *
+      FROM User
+      WHERE identificationUser = :identificationUser"
+    );
+    $result = $query->execute([
+      "identificationUser" => $user_identification->getidentificationUser()
+    ]);
+    $user_by_identification = $query->fetchAll(PDO::FETCH_CLASS, "User")[0];
+    return $user_by_identification;
   }
 }

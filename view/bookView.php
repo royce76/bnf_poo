@@ -22,9 +22,37 @@ include 'view/template/header.php';
         <li class="list-group-item">Identité : <?=$book->getIdentificationBook()?></li>
       </ul>
       <div class="card-body">
-        <form class="form-group" action="" method="POST">
-          <input type="submit" class="btn btn-primary" name="delete" value="Supprimer">
-        </form>
+        <?php if ($book->getUserId() !== null): ?>
+          <form action="" method="POST">
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary" name="delete" value="Supprimer" disabled>
+              <small><?="En cours d'emprunt"?></small>
+            </div>
+          </form>
+          <form action="" method="POST">
+            <div class="form-group">
+              <label for="userId">Statut :</label>
+              <select class="form-control" id="userId" name="userId">
+                <option value="">--Mettre à jour--</option>
+                <option value=null>Rendu</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary mb-2" name="bookBack">Mettre à jour</button>
+          </form>
+        <?php else: ?>
+          <form action="" method="POST">
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary" name="delete" value="Supprimer">
+            </div>
+          </form>
+          <form action="" method="POST">
+            <div class="form-group">
+              <label for="identificationUser">Entrez l'identifiant de l'emprunteur :</label>
+              <input type="number" class="form-control" id="identificationUser " placeholder="Identifiant abonné" name="identificationUser">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2" name="bookLend">Valider l'emprunt</button>
+          </form>
+        <?php endif; ?>
         <a href="index.php" class="btn btn-primary">Retour</a>
       </div>
     </div>
