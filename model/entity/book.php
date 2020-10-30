@@ -36,11 +36,11 @@ class Book {
   }
 
   public function setIsbn(string $isbn):self {
-    if (preg_match("/^[0-9]{13}$/",$isbn)) {
+    // if (preg_match("/^[0-9]{13}$/",$isbn)) {
       $this->isbn = $isbn;
       return $this;
-    }
-    throw new Exception("<li>L'isbn contient 13 chiffres exactement</li>");
+    // }
+    // throw new Exception("<li>L'isbn contient 13 chiffres exactement</li>");
   }
 
   public function getIsbn() {
@@ -48,11 +48,11 @@ class Book {
   }
 
   public function setTitle(string $title):self {
-    if (preg_match("/^[0-9a-zA-Z-'&@#_éèàç()ù°\/\".+* ]{2,100}$/",$title)) {
+    // if (preg_match("/^[0-9a-zA-Z-'&@#_éèàç()ù°\/\".+* ]{2,100}$/",$title)) {
       $this->title = $title;
       return $this;
-    }
-    throw new Exception("<li>Titre entre 2 et 100 caractères</li>");
+    // }
+    // throw new Exception("<li>Titre entre 2 et 100 caractères</li>");
   }
 
   public function getTitle() {
@@ -60,11 +60,11 @@ class Book {
   }
 
   public function setAuthor(string $author):self {
-    if (preg_match("/^[0-9a-zA-Z-'&@#_éèàç()ù°\/\".+* ]{2,100}$/",$author)) {
+    // if (preg_match("/^[0-9a-zA-Z-'&@#_éèàç()ù°\/\".+* ]{2,100}$/",$author)) {
       $this->author = $author;
       return $this;
-    }
-    throw new Exception("<li>Auteur entre 2 et 100 caractères</li>");
+    // }
+    // throw new Exception("<li>Auteur entre 2 et 100 caractères</li>");
   }
 
   public function getAuthor() {
@@ -72,11 +72,11 @@ class Book {
   }
 
   public function setPublisher(string $publisher):self {
-    if (preg_match("/^[0-9a-zA-Z-'&@#_éèàç()ù°\/\".+* ]{2,100}$/",$publisher)) {
+    // if (preg_match("/^[0-9a-zA-Z-'&@#_éèàç()ù°\/\".+* ]{2,100}$/",$publisher)) {
       $this->publisher = $publisher;
       return $this;
-    }
-    throw new Exception("<li>Editeur entre 2 et 100 caractères</li>");
+    // }
+    // throw new Exception("<li>Editeur entre 2 et 100 caractères</li>");
   }
 
   public function getPublisher() {
@@ -84,11 +84,11 @@ class Book {
   }
 
   public function setPublicationYear(string $publicationYear):self {
-    if (preg_match("/^[0-9]{4}$/",$publicationYear)) {
+    // if (preg_match("/^[0-9]{4}$/",$publicationYear)) {
       $this->publicationYear = $publicationYear;
       return $this;
-    }
-    throw new Exception("<li>Année non conforme</li>");
+    // }
+    // throw new Exception("<li>Année non conforme</li>");
   }
 
   public function getPublicationYear() {
@@ -96,11 +96,11 @@ class Book {
   }
 
   public function setPagesNumber(string $pagesNumber):self {
-    if (preg_match("/^[0-9]{1,4}$/",$pagesNumber)) {
+    // if (preg_match("/^[0-9]{1,4}$/",$pagesNumber)) {
       $this->pagesNumber = $pagesNumber;
       return $this;
-    }
-    throw new Exception("<li>Nombre de page non conforme</li>");
+    // }
+    // throw new Exception("<li>Nombre de page non conforme</li>");
   }
 
   public function getPagesNumber() {
@@ -108,11 +108,11 @@ class Book {
   }
 
   public function setSummary(string $summary):self {
-    if (preg_match("/^[0-9a-zA-Z-'&@#_éèàç()ù°\/\".+* ]{2,500}$/",$summary)) {
+    // if (preg_match("/^[0-9a-zA-Z-'&@#_éèàç()ù°\/\".+* ]{2,500}$/",$summary)) {
       $this->summary = $summary;
       return $this;
-    }
-    throw new Exception("<li>Résumé entre 2 et 500 caractères.</li>");
+    // }
+    // throw new Exception("<li>Résumé entre 2 et 500 caractères.</li>");
   }
 
   public function getSummary() {
@@ -120,11 +120,11 @@ class Book {
   }
 
   public function setQuantity(string $quantity):self {
-    if (preg_match("/^[0-9]{1,2}$/",$quantity)) {
+    // if (preg_match("/^[0-9]{1,2}$/",$quantity)) {
       $this->quantity = $quantity;
       return $this;
-    }
-    throw new Exception("<li>Quantité hors norme.</li>");
+    // }
+    // throw new Exception("<li>Quantité hors norme.</li>");
   }
 
   public function getQuantity() {
@@ -132,11 +132,11 @@ class Book {
   }
 
   public function setBookType(string $bookType):self {
-    if (preg_match("/^[0-9a-zA-Z-'&@#_éèàç()ù°\/\".+* ]{2,50}$/",$bookType)) {
+    // if (preg_match("/^[0-9a-zA-Z-'&@#_éèàç()ù°\/\".+* ]{2,50}$/",$bookType)) {
       $this->bookType = $bookType;
       return $this;
-    }
-    throw new Exception("<li>Type entre 2 et 50 caractères</li>");
+    // }
+    // throw new Exception("<li>Type entre 2 et 50 caractères</li>");
   }
 
   public function getBookType() {
@@ -144,11 +144,11 @@ class Book {
   }
 
   public function setBookNature(string $bookNature):self {
-    if (preg_match("/^[0-9a-zA-Z-'&@#_éèàç()ù°\/\".+* ]{2,50}$/",$bookNature)) {
+    // if (preg_match("/^[0-9a-zA-Z-'&@#_éèàç()ù°\/\".+* ]{2,50}$/",$bookNature)) {
       $this->bookNature = $bookNature;
       return $this;
-    }
-    throw new Exception("<li>Nature entre 2 et 50 caractères</li>");
+    // }
+    // throw new Exception("<li>Nature entre 2 et 50 caractères</li>");
   }
 
   public function getBookNature() {
@@ -156,11 +156,11 @@ class Book {
   }
 
   public function setIdentificationBook(string $identificationBook):self {
-    if (preg_match("/^[0-9]{10}$/",$identificationBook)) {
+    // if (preg_match("/^[0-9]{10}$/",$identificationBook)) {
       $this->identificationBook = $identificationBook;
       return $this;
-    }
-    throw new Exception("<li>Identité du livre 10 chiffres exactements</li>");
+    // }
+    // throw new Exception("<li>Identité du livre 10 chiffres exactements</li>");
   }
 
   public function getIdentificationBook() {
