@@ -14,6 +14,7 @@ class Book {
   protected string $bookType;
   protected string $bookNature;
   protected string $identificationBook;
+  protected ?User $userLend = null;
   protected ?int $userId;
 
   public function setId(int $id):self {
@@ -23,6 +24,15 @@ class Book {
 
   public function getId() {
     return $this->id;
+  }
+
+  public function setUserLend(User $userLend = null):Book {
+    $this->userLend = $userLend;
+    return $this;
+  }
+
+  public function getUserLend() {
+    return $this->userLend;
   }
 
   public function setIsbn(string $isbn):self {
@@ -38,11 +48,11 @@ class Book {
   }
 
   public function setTitle(string $title):self {
-    if (preg_match("/^[a-zA-Z-' ]{2,100}$/",$title)) {
+    // if (preg_match("/^[a-zA-Z-' ]{2,100}$/",$title)) {
       $this->title = $title;
       return $this;
-    }
-    throw new Exception("<li>Titre entre 2 et 100 caractères</li>");
+    // }
+    // throw new Exception("<li>Titre entre 2 et 100 caractères</li>");
   }
 
   public function getTitle() {
@@ -98,11 +108,11 @@ class Book {
   }
 
   public function setSummary(string $summary):self {
-    if (preg_match("/^[a-zA-Z-' ]{2,500}$/",$summary)) {
+    // if (preg_match("/^[a-zA-Z-' ]{2,500}$/",$summary)) {
       $this->summary = $summary;
       return $this;
-    }
-    throw new Exception("<li>Résumé entre 2 et 500 caractères.</li>");
+    // }
+    // throw new Exception("<li>Résumé entre 2 et 500 caractères.</li>");
   }
 
   public function getSummary() {

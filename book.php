@@ -7,11 +7,9 @@ require 'model/entity/User.php';
 require 'model/UserManager.php';
 
 $book_manager = new BookManager();
+//on affiche un livre avec son emprunteur s'il y a.
 $book = $book_manager->getBookByGetId();
-
 $user_manager = new UserManager();
-
-$user_book = $user_manager->getUserBook($book);
 
 //Delete book
 if (isset($_POST["delete"])) {
@@ -23,7 +21,7 @@ if (isset($_POST["delete"])) {
 }
 $error = "";
 //update book lending
-if (isset($_POST["bookLend"])) {
+if (isset($_POST["bookLending"])) {
   try {
     $user = new User($_POST);
   } catch (\Exception $e) {
@@ -32,16 +30,18 @@ if (isset($_POST["bookLend"])) {
   if (empty($error)) {
     $user = $user_manager->getUser($user);
     $book_manager->updateBookStatus($user);
-    header("Location: index.php");
+    header("Location: book.php?id={$_GET["id"]}");
     exit();
   }
-  $error = "Identifiant non reconnu.";
+  else {
+    $error = "Identifiant non reconnu.";
+  }
 }
 
 //update book back
 if (isset($_POST["bookBack"])) {
   $book = $book_manager->updateBookStatusBack();
-  header("Location: index.php");
+  header("Location: book.php?id={$_GET["id"]}");
   exit();
 }
 include "View/bookView.php";
