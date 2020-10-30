@@ -13,11 +13,11 @@ if (isset($_POST["Ajouter"]) && !empty($_POST["Ajouter"])) {
   if (count($entries) === count($_POST)) {
     try {
       $book = new Book($_POST);
+      $book_manager->addBook($book);
     } catch (\Exception $e) {
       $error = $e->getMessage();
     }
     if (empty($error)) {
-      $book_manager->addBook($book);
       header("Location: index.php");
       exit();
     }
