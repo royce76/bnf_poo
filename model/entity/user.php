@@ -119,11 +119,11 @@ class User {
   }
 
   public function setIdentificationUser(string $identificationUser):self {
-    if (preg_match("/^[0-9]{9}$/",$identificationUser)) {
+    // if (preg_match("/^[0-9]{9}$/",$identificationUser)) {
       $this->identificationUser = $identificationUser;
       return $this;
-    }
-    throw new Exception("<li>Identification de 9 chiffres exactements</li>");
+    // }
+    // throw new Exception("<li>Identification de 9 chiffres exactements</li>");
   }
 
   public function getIdentificationUser() {
