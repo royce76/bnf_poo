@@ -7,7 +7,7 @@ abstract class DataBase {
   const HOST = "localhost";
   const DBNAME = "bnf";
   const USER = "root";
-  const PASSWORD = "";
+  const PASSWORD = "root";
 
   //call the database
   static public function getConnection() {
