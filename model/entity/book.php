@@ -3,11 +3,11 @@
 class Book {
 
   protected int $id;
-  protected string $isbn;
+  protected int $isbn;
   protected string $title;
   protected string $author;
   protected string $publisher;
-  protected string $publicationYear;
+  protected int $publicationYear;
   protected int $pagesNumber;
   protected string $summary;
   protected int $quantity;
@@ -35,8 +35,8 @@ class Book {
     return $this->userLend;
   }
 
-  public function setIsbn(string $isbn):self {
-    if (preg_match("/^[0-9]{13}$/",$isbn)) {
+  public function setIsbn(int $isbn):self {
+    if (intval(preg_match("/^[0-9]{13}$/",$isbn))) {
       $this->isbn = $isbn;
       return $this;
     }
@@ -48,11 +48,11 @@ class Book {
   }
 
   public function setTitle(string $title):self {
-    // if (preg_match("/^[a-zA-Z-' ]{2,100}$/",$title)) {
+    if (preg_match("/^[0-9a-zA-Z-'&@#_éèàç()ù°\/\".+* ]{2,100}$/",$title)) {
       $this->title = $title;
       return $this;
-    // }
-    // throw new Exception("<li>Titre entre 2 et 100 caractères</li>");
+    }
+    throw new Exception("<li>Titre entre 2 et 100 caractères</li>");
   }
 
   public function getTitle() {
@@ -60,7 +60,7 @@ class Book {
   }
 
   public function setAuthor(string $author):self {
-    if (preg_match("/^[a-zA-Z-' ]{2,100}$/",$author)) {
+    if (preg_match("/^[0-9a-zA-Z-'&@#_éèàç()ù°\/\".+* ]{2,100}$/",$author)) {
       $this->author = $author;
       return $this;
     }
@@ -72,7 +72,7 @@ class Book {
   }
 
   public function setPublisher(string $publisher):self {
-    if (preg_match("/^[a-zA-Z-' ]{2,100}$/",$publisher)) {
+    if (preg_match("/^[0-9a-zA-Z-'&@#_éèàç()ù°\/\".+* ]{2,100}$/",$publisher)) {
       $this->publisher = $publisher;
       return $this;
     }
@@ -83,8 +83,8 @@ class Book {
     return $this->publisher;
   }
 
-  public function setPublicationYear(string $publicationYear):self {
-    if (preg_match("/^[0-9]{4}$/",$publicationYear)) {
+  public function setPublicationYear(int $publicationYear):self {
+    if (intval(preg_match("/^[0-9]{4}$/",$publicationYear))) {
       $this->publicationYear = $publicationYear;
       return $this;
     }
@@ -96,7 +96,7 @@ class Book {
   }
 
   public function setPagesNumber(int $pagesNumber):self {
-    if (preg_match("/^[0-9]{1,4}$/",$pagesNumber)) {
+    if (intval(preg_match("/^[0-9]{1,4}$/",$pagesNumber))) {
       $this->pagesNumber = $pagesNumber;
       return $this;
     }
@@ -108,11 +108,11 @@ class Book {
   }
 
   public function setSummary(string $summary):self {
-    // if (preg_match("/^[a-zA-Z-' ]{2,500}$/",$summary)) {
+    if (preg_match("/^[0-9a-zA-Z-'&@#_éèàç()ù°\/\".+* ]{2,500}$/",$summary)) {
       $this->summary = $summary;
       return $this;
-    // }
-    // throw new Exception("<li>Résumé entre 2 et 500 caractères.</li>");
+    }
+    throw new Exception("<li>Résumé entre 2 et 500 caractères.</li>");
   }
 
   public function getSummary() {
@@ -120,7 +120,7 @@ class Book {
   }
 
   public function setQuantity(int $quantity):self {
-    if (preg_match("/^[0-9]{1,2}$/",$quantity)) {
+    if (intval(preg_match("/^[0-9]{1,2}$/",$quantity))) {
       $this->quantity = $quantity;
       return $this;
     }
@@ -132,7 +132,7 @@ class Book {
   }
 
   public function setBookType(string $bookType):self {
-    if (preg_match("/^[a-zA-Z-' ]{2,50}$/",$bookType)) {
+    if (preg_match("/^[0-9a-zA-Z-'&@#_éèàç()ù°\/\".+* ]{2,50}$/",$bookType)) {
       $this->bookType = $bookType;
       return $this;
     }
@@ -144,7 +144,7 @@ class Book {
   }
 
   public function setBookNature(string $bookNature):self {
-    if (preg_match("/^[a-zA-Z-' ]{2,50}$/",$bookNature)) {
+    if (preg_match("/^[0-9a-zA-Z-'&@#_éèàç()ù°\/\".+* ]{2,50}$/",$bookNature)) {
       $this->bookNature = $bookNature;
       return $this;
     }
@@ -160,7 +160,7 @@ class Book {
       $this->identificationBook = $identificationBook;
       return $this;
     }
-    throw new Exception("<li>10 chiffres exactements</li>");
+    throw new Exception("<li>Identité du livre 10 chiffres exactements</li>");
   }
 
   public function getIdentificationBook() {

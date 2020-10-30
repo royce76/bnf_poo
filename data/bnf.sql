@@ -20,7 +20,7 @@ ENGINE=InnoDB;
 
 INSERT INTO User(lastname, firstname, email, city, cityCode, adress, sex, birthDate, borrowingDate, identificationUser)
 VALUES
-("George", "Royce", "royce@hotmail.com", "Oissel", "76350", "16 rue pierre Sémard", "h", "1986-09-19", "2020-10-26", "123456789"),
+("George", "Royce", "royce@hotmail.com", "Oissel", "76350", "16 rue pierre Sémard", "h", "1986-09-19", NOW(), "123456789"),
 ("Clara", "Morgane", "clara@gmail.com", "Alfortville", "94140", "2 rue de Lisbonne", "f", "1998-08-17", "2020-09-30", "987654321");
 
 CREATE TABLE Book(
@@ -30,9 +30,9 @@ CREATE TABLE Book(
   author VARCHAR(100) NOT NULL,
   publisher VARCHAR(100) NOT NULL,
   publicationYear YEAR NOT NULL,
-  pagesNumber VARCHAR(4) NOT NULL,
+  pagesNumber INT NOT NULL,
   summary TEXT NOT NULL,
-  quantity VARCHAR(2) NOT NULL,
+  quantity INT NOT NULL,
   bookType VARCHAR(50) NOT NULL,
   bookNature VARCHAR(50) NOT NULL,
   identificationBook CHAR(10) NOT NULL UNIQUE,

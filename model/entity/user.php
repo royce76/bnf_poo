@@ -71,7 +71,7 @@ class User {
     return $this->city;
   }
 
-  public function setCityCode(string $cityCode):self {
+  public function setCityCode(int $cityCode):self {
     $this->cityCode = $cityCode;
     return $this;
   }
@@ -123,7 +123,7 @@ class User {
       $this->identificationUser = $identificationUser;
       return $this;
     }
-    throw new Exception("<li>9 chiffres exactements</li>");
+    throw new Exception("<li>Identification de 9 chiffres exactements</li>");
   }
 
   public function getIdentificationUser() {
