@@ -28,13 +28,13 @@ if (isset($_POST["bookLending"])) {
     $error = $e->getMessage();
   }
   if (empty($error)) {
-    $user = $user_manager->getUser($user);
+    $user = $user_manager->getUser($user);    
     $book_manager->updateBookStatus($user);
     header("Location: book.php?id={$_GET["id"]}");
     exit();
   }
   else {
-    $error = "Identifiant non reconnu.";
+    $error = "Identifiant inconnu.";
   }
 }
 

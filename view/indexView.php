@@ -51,7 +51,7 @@ include 'view/template/header.php';
     <form class="col-10 mx-auto my-4" action="" method="POST">
       <div class="form-group">
         <label for="isbn">ISBN :</label>
-        <input type="text" class="form-control" id="isbn" name="isbn" aria-describedby="emailHelp">
+        <input type="number" class="form-control" id="isbn" name="isbn" aria-describedby="emailHelp">
       </div>
       <div class="form-group">
         <label for="title">Titre :</label>
@@ -71,7 +71,7 @@ include 'view/template/header.php';
       </div>
       <div class="form-group">
         <label for="pagesNumber">Nombre de pages :</label>
-        <input type="text" class="form-control" id="pagesNumber" name="pagesNumber">
+        <input type="number" class="form-control" id="pagesNumber" name="pagesNumber">
       </div>
       <div class="form-group">
         <label for="summary">Résumé :</label>
@@ -79,7 +79,7 @@ include 'view/template/header.php';
       </div>
       <div class="form-group">
         <label for="quantity">Quantité:</label>
-        <input type="text" class="form-control" id="quantity" name="quantity">
+        <input type="number" class="form-control" id="quantity" name="quantity">
       </div>
       <div class="form-group">
         <label for="bookType">Type :</label>
