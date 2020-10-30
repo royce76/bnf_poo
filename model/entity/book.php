@@ -3,19 +3,19 @@
 class Book {
 
   protected int $id;
-  protected int $isbn;
+  protected string $isbn;
   protected string $title;
   protected string $author;
   protected string $publisher;
-  protected int $publicationYear;
-  protected int $pagesNumber;
+  protected string $publicationYear;
+  protected string $pagesNumber;
   protected string $summary;
-  protected int $quantity;
+  protected string $quantity;
   protected string $bookType;
   protected string $bookNature;
   protected string $identificationBook;
   protected ?User $userLend = null;
-  protected ?int $userId;
+  protected ?string $userId;
 
   public function setId(int $id):self {
     $this->id = $id;
@@ -35,8 +35,8 @@ class Book {
     return $this->userLend;
   }
 
-  public function setIsbn(int $isbn):self {
-    if (intval(preg_match("/^[0-9]{13}$/",$isbn))) {
+  public function setIsbn(string $isbn):self {
+    if (preg_match("/^[0-9]{13}$/",$isbn)) {
       $this->isbn = $isbn;
       return $this;
     }
@@ -83,8 +83,8 @@ class Book {
     return $this->publisher;
   }
 
-  public function setPublicationYear(int $publicationYear):self {
-    if (intval(preg_match("/^[0-9]{4}$/",$publicationYear))) {
+  public function setPublicationYear(string $publicationYear):self {
+    if (preg_match("/^[0-9]{4}$/",$publicationYear)) {
       $this->publicationYear = $publicationYear;
       return $this;
     }
@@ -95,8 +95,8 @@ class Book {
     return $this->publicationYear;
   }
 
-  public function setPagesNumber(int $pagesNumber):self {
-    if (intval(preg_match("/^[0-9]{1,4}$/",$pagesNumber))) {
+  public function setPagesNumber(string $pagesNumber):self {
+    if (preg_match("/^[0-9]{1,4}$/",$pagesNumber)) {
       $this->pagesNumber = $pagesNumber;
       return $this;
     }
@@ -119,8 +119,8 @@ class Book {
     return $this->summary;
   }
 
-  public function setQuantity(int $quantity):self {
-    if (intval(preg_match("/^[0-9]{1,2}$/",$quantity))) {
+  public function setQuantity(string $quantity):self {
+    if (preg_match("/^[0-9]{1,2}$/",$quantity)) {
       $this->quantity = $quantity;
       return $this;
     }
