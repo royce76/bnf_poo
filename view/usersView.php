@@ -6,6 +6,11 @@ include 'view/template/header.php';
 
 <section class="container">
   <div class="row">
+    <?php if ($error !== ""): ?>
+      <div class="alert alert-danger col-10 mx-auto my-4 text-center" role="alert">
+        <?=$error?>
+      </div>
+    <?php endif; ?>
     <div class="col-10 mx-auto my-4">
       <form action="" method="POST">
         <div class="form-group">
@@ -14,15 +19,17 @@ include 'view/template/header.php';
         </div>
         <button type="submit" class="btn btn-primary mb-2" name="informations">Informations</button>
       </form>
-      <?php if ($user_identification !== []): ?>
-        <?php if ($user_identification->getId() === $book_user->getUserId()): ?>
+      <?php if ($ok === "okay"): ?>
+        <?php if ($user_identification->getBookLend() !== null): ?>
           <div class="col-10 mx-auto my-4">
             <ul>
               <li><?="{$user_identification->getLastname()} = {$user_identification->getidentificationUser()}"?></li>
-              <li><?="Titre = {$book_user->getTitle()}"?></li>
-              <li><?="identité du livre = {$book_user->getIdentificationBook()}"?></li>
+              <li><?="Titre = {$user_identification->getBookLend()->getTitle()}"?></li>
+              <li><?="identité du livre = {$user_identification->getBookLend()->getIdentificationBook()}"?></li>
             </ul>
           </div>
+          <?php else: ?>
+            <?="Cet abonné n'a emprunté aucun livre."?>
         <?php endif; ?>
       <?php endif; ?>
     </div>

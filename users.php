@@ -9,20 +9,21 @@ require 'model/UserManager.php';
 $user_manager = new UserManager();
 $users = $user_manager->getUsers();
 
-$book_manager = new BookManager();
-
-$user_identification = $book_user = [];
+$error = $ok = "";
 if (isset($_POST["informations"])) {
   try {
     $user = new User($_POST);
+    $user_identification = $user_manager->getUser($user);
   } catch (\Exception $e) {
     $error = $e->getMessage();
   }
-  if (empty($error)) {
-    $user_identification = $user_manager->getUser($user);
-    $book_user = $book_manager->getBookUser($user_identification);
+  if(empty($error)){
+    $ok = "okay";
   }
-  $error = "Identifiant non reconnu.";
+  else {
+    $error = "Identifiant non reconnu.";
+  }
+
 }
 
 include "View/usersView.php";

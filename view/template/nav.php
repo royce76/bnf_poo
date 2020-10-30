@@ -18,7 +18,7 @@
             <a class="nav-link active" href="index.php">Accueil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="users.php">Abonnées</a>
+            <a class="nav-link" href="users.php">Abonnés</a>
           </li>
         </ul>
       </nav>

@@ -5,6 +5,7 @@ class User {
   const SEX = ["h", "f"];
 
   protected int $id;
+  protected ?Book $bookLend = null;
   protected string $lastname;
   protected string $firstname;
   protected string $email;
@@ -23,6 +24,15 @@ class User {
 
   public function getId() {
     return $this->id;
+  }
+
+  public function setBookLend(Book $bookLend = null):self {
+    $this->bookLend = $bookLend;
+    return $this;
+  }
+
+  public function getBookLend() {
+    return $this->bookLend;
   }
 
   public function setLastname(string $lastname):self {

@@ -25,17 +25,23 @@ class BookManager {
     return $title_book;
   }
 
-  // Récupère un livre
+  // Récupère un livre avec son éventuelle emprunteur
   public function getBookByGetId():Book {
     $query = $this->getDb()->prepare(
-      "SELECT *
-      FROM Book
-      WHERE id = :id"
+      "SELECT lastname, identificationUser, b.*
+      FROM User AS u
+      RIGHT JOIN Book AS b
+      ON u.id = b.userId
+      WHERE b.id = :id"
     );
     $result = $query->execute([
       "id" => $_GET["id"]
     ]);
-    $book = $query->fetchAll(PDO::FETCH_CLASS, "Book")[0];
+    $book_id = $query->fetchAll(PDO::FETCH_ASSOC)[0];
+    $book = new Book($book_id);
+    if ($book_id["lastname"] !== null) {
+      $book->setUserLend(new user($book_id));
+    }
     return $book;
   }
 
@@ -98,21 +104,6 @@ class BookManager {
       "id" => $_GET["id"]
     ]);
     return $result;
-  }
-
-  //On récupère sur index.php un livre en rentrant son identifiant
-  public function getBookUser(User $user):Book {
-    $query = $this->getDb()->prepare(
-      "SELECT lastname, identificationUser, b.userId, b.title, b.identificationBook, b.author
-      FROM User AS u
-      RIGHT JOIN Book AS b
-      ON b.userId = :idUser"
-    );
-    $result = $query->execute([
-      "idUser" => $user->getId()
-    ]);
-    $user_book = $query->fetchAll(PDO::FETCH_CLASS, "Book")[0];
-    return $user_book;
   }
 
 }
