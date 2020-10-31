@@ -10,7 +10,7 @@ include 'view/template/header.php';
       <thead>
         <tr>
           <th scope="col">Identité</th>
-          <th scope="col">isbn</th>
+          <th scope="col">ISBN</th>
           <th scope="col">Titre</th>
           <th scope="col">Auteur</th>
           <th scope="col">Editeur</th>
@@ -60,7 +60,7 @@ include 'view/template/header.php';
     <?php endif; ?>
     <form class="col-10 mx-auto my-4" action="" method="POST">
       <div class="form-group">
-        <label for="isbn">ISBN :</label>
+        <label for="isbn">ISBN : (13chiffres)</label>
         <input type="text" class="form-control" id="isbn" name="isbn" aria-describedby="emailHelp">
       </div>
       <div class="form-group">
@@ -100,7 +100,7 @@ include 'view/template/header.php';
         <input type="text" class="form-control" id="bookNature" name="bookNature">
       </div>
       <div class="form-group">
-        <label for="identificationBook">Identité :</label>
+        <label for="identificationBook">Identité :(10 chiffres)</label>
         <input type="text" class="form-control" id="identificationBook" name="identificationBook">
       </div>
       <input type="submit" class="btn btn-primary" name="add" value="Ajouter">

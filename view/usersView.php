@@ -14,7 +14,7 @@ include 'view/template/header.php';
     <div class="col-10 mx-auto my-4">
       <form action="" method="POST">
         <div class="form-group">
-          <label for="identificationUser">Entrez l'identifiant :</label>
+          <label for="identificationUser">Entrez l'identifiant :(9 chiffres)</label>
           <input type="number" class="form-control" id="identificationUser " placeholder="Identifiant abonné" name="identificationUser">
         </div>
         <button type="submit" class="btn btn-primary mb-2" name="informations">Informations</button>
@@ -29,7 +29,7 @@ include 'view/template/header.php';
             </ul>
           </div>
           <?php else: ?>
-            <?="Cet abonné n'a emprunté aucun livre."?>
+            <?="Cet abonné n'a emprunté aucun livre"?>
         <?php endif; ?>
       <?php endif; ?>
     </div>
@@ -40,10 +40,10 @@ include 'view/template/header.php';
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">#</th>
+            <th scope="col">N°Abonné</th>
             <th scope="col">Nom</th>
             <th scope="col">Prénom</th>
-            <th scope="col">email</th>
+            <th scope="col">Email</th>
             <th scope="col">Ville</th>
             <th scope="col">Date de naissance</th>
             <th scope="col">Détails</th>
@@ -58,7 +58,7 @@ include 'view/template/header.php';
               <td><?=$user->getEmail()?></td>
               <td><?=$user->getCity()?></td>
               <td><?=$user->getBirthDate()?></td>
-              <td><a class="btn btn-primary" href=<?="user.php?id={$user->getId()}"?>>Fiche personnel</a></td>
+              <td><a class="btn btn-primary" href=<?="user.php?id={$user->getId()}"?>>Fiche personnelle</a></td>
             </tr>
           <?php endforeach; ?>
         </tbody>

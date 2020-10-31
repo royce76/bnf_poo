@@ -2,7 +2,7 @@
 // Classe représetant les utilisateurs stockés en base de données
 class User {
 
-  const SEX = ["h", "f"];
+  const SEX = ["M", "F"];
   //les identités sont en string pour mettre des 0
   protected int $id;
   protected ?Book $bookLend = null;
@@ -123,7 +123,7 @@ class User {
       $this->identificationUser = $identificationUser;
       return $this;
     }
-    throw new Exception("Identification de 9 chiffres exactements");
+    throw new Exception("Identification de 9 chiffres exactement");
   }
 
   public function getIdentificationUser() {

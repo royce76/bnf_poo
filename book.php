@@ -44,7 +44,7 @@ if (isset($_POST["bookLending"])) {
     }
   }
   else {
-    $field = "Champs vide.";
+    $field = "Champs vides";
   }
 }
 
@@ -56,7 +56,7 @@ if (isset($_POST["bookBack"])) {
     exit();
   }
   else {
-    $field = "Veuillez sélectionner rendu.";
+    $field = "Veuillez sélectionner 'rendu'";
   }
 }
 include "View/bookView.php";

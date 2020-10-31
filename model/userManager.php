@@ -16,7 +16,7 @@ class UserManager {
     return $this->_db;
   }
 
-  //function check identificationUser exist
+  //method check identificationUser exist
   public function checkIdentificationUser(string $data):bool {
     $check = FALSE;
     $users = $this->getUsers();

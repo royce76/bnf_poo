@@ -21,7 +21,7 @@ if (isset($_POST["informations"])) {
     $ok = "okay";
   }
   else {
-    $error = "Identifiant non reconnu.";
+    $error = "Identifiant non reconnu";
   }
 
 }

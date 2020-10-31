@@ -16,6 +16,36 @@ class BookManager {
     return $this->_db;
   }
 
+  //method check identificationBook exist
+  public function checkIdentificationBook(string $data):bool {
+    $check = FALSE;
+    $list_book = $this->getBooks();
+    foreach ($list_book as $key => $book) {
+      if ($book->getIdentificationBook() === $data) {
+        $check = TRUE;
+      }
+      else {
+        $check;
+      }
+    }
+    return $check;
+  }
+
+  //Method check isbn exist
+  public function checkIsbn(string $data):bool {
+    $check = FALSE;
+    $list_book = $this->getBooks();
+    foreach ($list_book as $key => $book) {
+      if ($book->getIsbn() === $data) {
+        $check = TRUE;
+      }
+      else {
+        $check;
+      }
+    }
+    return $check;
+  }
+
   // Récupère tous les livres
   public function getBooks():?array {
     $query = $this->getDb()->query(
@@ -28,7 +58,7 @@ class BookManager {
   // Récupère un livre avec son éventuelle emprunteur
   public function getBookByGetId():Book {
     $query = $this->getDb()->prepare(
-      "SELECT lastname, identificationUser, b.*
+      "SELECT lastname, firstname, identificationUser, b.*
       FROM User AS u
       RIGHT JOIN Book AS b
       ON u.id = b.userId

@@ -38,8 +38,8 @@ include 'view/template/header.php';
               <input type="submit" class="btn btn-primary" name="delete" value="Supprimer" disabled>
               <div class="">
                 <ul>
-                  <li><?="L'abonnée : {$book->getUserLend()->getLastName()} a emprunter ce livre"?></li>
-                  <li><?="identifiant : {$book->getUserLend()->getidentificationUser()}"?></li>
+                  <li><?="L'abonné : {$book->getUserLend()->getLastName()} {$book->getUserLend()->getFirstname()} a emprunté ce livre"?></li>
+                  <li><?="Identifiant : {$book->getUserLend()->getidentificationUser()}"?></li>
                 </ul>
               </div>
             </div>
@@ -65,7 +65,7 @@ include 'view/template/header.php';
           </form>
           <form action="" method="POST">
             <div class="form-group">
-              <label for="identificationUser">Entrez l'identifiant de l'emprunteur :</label>
+              <label for="identificationUser">Entrez l'identifiant de l'emprunteur :(9 chiffres)</label>
               <input type="text" class="form-control" id="identificationUser " placeholder="Identifiant abonné" name="identificationUser">
             </div>
             <button type="submit" class="btn btn-primary mb-2" name="bookLending">Valider l'emprunt</button>
