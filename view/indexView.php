@@ -48,6 +48,16 @@ include 'view/template/header.php';
         <?=$error?>
       </div>
     <?php endif; ?>
+    <?php if ($field !== ""): ?>
+      <div class="alert alert-danger col-10 mx-auto my-4 text-center" role="alert">
+        <?=$field?>
+      </div>
+    <?php endif; ?>
+    <?php if ($errors !== ""): ?>
+      <div class="alert alert-danger col-10 mx-auto my-4 text-center" role="alert">
+        <?=$errors?>
+      </div>
+    <?php endif; ?>
     <form class="col-10 mx-auto my-4" action="" method="POST">
       <div class="form-group">
         <label for="isbn">ISBN :</label>
@@ -91,9 +101,9 @@ include 'view/template/header.php';
       </div>
       <div class="form-group">
         <label for="identificationBook">Identité :</label>
-        <input type="text" class="form-control" id="identificationBook" name="identificationBook">
+        <input type="number" class="form-control" id="identificationBook" name="identificationBook">
       </div>
-      <input type="submit" class="btn btn-primary" name="Ajouter" value="Ajouter">
+      <input type="submit" class="btn btn-primary" name="add" value="Ajouter">
     </form>
   </div>
 </section>
