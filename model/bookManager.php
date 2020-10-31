@@ -61,7 +61,7 @@ class BookManager {
     try {
       $this->getDb()->beginTransaction();
       $query = $this->getDb()->prepare(
-        "INSER INTO Book(isbn, title, author, publisher, publicationYear, pagesNumber, summary, quantity, bookType, bookNature, identificationBook, userId)
+        "INSERT INTO Book(isbn, title, author, publisher, publicationYear, pagesNumber, summary, quantity, bookType, bookNature, identificationBook, userId)
         VALUES
         (:isbn, :title, :author, :publisher, :publicationYear, :pagesNumber, :summary, :quantity, :bookType, :bookNature, :identificationBook, null)"
       );

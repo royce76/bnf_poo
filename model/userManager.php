@@ -16,6 +16,20 @@ class UserManager {
     return $this->_db;
   }
 
+  //function check identificationUser exist
+  public function checkIdentificationUser(string $data):bool {
+    $check = FALSE;
+    $users = $this->getUsers();
+    foreach ($users as $key => $user) {
+      if ($user->getidentificationUser() === $data) {
+        $check = TRUE;
+      }
+      else {
+        $check;
+      }
+    }
+    return $check;
+  }
 
   // Récupère tous les utilisateurs
   public function getUsers():?array {
