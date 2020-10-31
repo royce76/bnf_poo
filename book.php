@@ -7,9 +7,10 @@ require 'model/entity/User.php';
 require 'model/UserManager.php';
 
 $book_manager = new BookManager();
+$user_manager = new UserManager();
 //on affiche un livre avec son emprunteur s'il y a.
 $book = $book_manager->getBookByGetId();
-$user_manager = new UserManager();
+
 
 //Delete book
 if (isset($_POST["delete"])) {
@@ -18,22 +19,6 @@ if (isset($_POST["delete"])) {
     header("Location: index.php");
     exit();
   }
-}
-
-//function check identificationUser exist
-function checkIdentificationUser(string $data):bool {
-  $check = FALSE;
-  $user_manager = new UserManager();
-  $users = $user_manager->getUsers();
-  foreach ($users as $key => $user) {
-    if ($user->getidentificationUser() === $data) {
-      $check = TRUE;
-    }
-    else {
-      $check;
-    }
-  }
-  return $check;
 }
 
 $error = "";
@@ -47,7 +32,7 @@ if (isset($_POST["bookLending"])) {
       $error = $e->getMessage();
     }
     if (empty($error)) {
-      if (checkIdentificationUser($_POST["identificationUser"])) {
+      if ($user_manager->checkIdentificationUser($_POST["identificationUser"])) {
         $user = $user_manager->getUser($user);
         $lend = $book_manager->updateBookStatus($user);
         header("Location: book.php?id={$_GET["id"]}");
@@ -65,8 +50,13 @@ if (isset($_POST["bookLending"])) {
 
 //update book back
 if (isset($_POST["bookBack"])) {
-  $book = $book_manager->updateBookStatusBack();
-  header("Location: book.php?id={$_GET["id"]}");
-  exit();
+  if (!empty($_POST["userId"])) {
+    $book = $book_manager->updateBookStatusBack();
+    header("Location: book.php?id={$_GET["id"]}");
+    exit();
+  }
+  else {
+    $field = "Veuillez sélectionner rendu.";
+  }
 }
 include "View/bookView.php";
