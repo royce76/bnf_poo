@@ -58,25 +58,33 @@ class BookManager {
 
   // Ajoute un nouveau livre
   public function addBook(Book $book):bool {
-    $query = $this->getDb()->prepare(
-      "INSERT INTO Book(isbn, title, author, publisher, publicationYear, pagesNumber, summary, quantity, bookType, bookNature, identificationBook, userId)
-      VALUES
-      (:isbn, :title, :author, :publisher, :publicationYear, :pagesNumber, :summary, :quantity, :bookType, :bookNature, :identificationBook, null)"
-    );
-    $result = $query->execute([
-      "isbn" => $book->getIsbn(),
-      "title" => $book->getTitle(),
-      "author" => $book->getAuthor(),
-      "publisher" => $book->getPublisher() ,
-      "publicationYear" => $book->getPublicationYear(),
-      "pagesNumber" => $book->getPagesNumber(),
-      "summary" => $book->getSummary(),
-      "quantity" => $book->getQuantity(),
-      "bookType" => $book->getBookType(),
-      "bookNature" => $book->getBookNature(),
-      "identificationBook" => $book->getIdentificationBook()
-    ]);
-    return $result;
+    try {
+      $this->getDb()->beginTransaction();
+      $query = $this->getDb()->prepare(
+        "INSER INTO Book(isbn, title, author, publisher, publicationYear, pagesNumber, summary, quantity, bookType, bookNature, identificationBook, userId)
+        VALUES
+        (:isbn, :title, :author, :publisher, :publicationYear, :pagesNumber, :summary, :quantity, :bookType, :bookNature, :identificationBook, null)"
+      );
+      $result = $query->execute([
+        "isbn" => $book->getIsbn(),
+        "title" => $book->getTitle(),
+        "author" => $book->getAuthor(),
+        "publisher" => $book->getPublisher() ,
+        "publicationYear" => $book->getPublicationYear(),
+        "pagesNumber" => $book->getPagesNumber(),
+        "summary" => $book->getSummary(),
+        "quantity" => $book->getQuantity(),
+        "bookType" => $book->getBookType(),
+        "bookNature" => $book->getBookNature(),
+        "identificationBook" => $book->getIdentificationBook()
+      ]);
+      $this->getDb()->commit();
+      return $result;
+    } catch (\Exception $e) {
+      // $errors = $e->getMessage();
+      $this->getDb()->rollBack();
+    }
+
   }
 
   // Met à jour le statut d'un livre emprunté
