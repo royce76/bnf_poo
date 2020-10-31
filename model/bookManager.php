@@ -81,10 +81,8 @@ class BookManager {
       $this->getDb()->commit();
       return $result;
     } catch (\Exception $e) {
-      // $errors = $e->getMessage();
       $this->getDb()->rollBack();
     }
-
   }
 
   // Met à jour le statut d'un livre emprunté

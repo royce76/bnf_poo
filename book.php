@@ -19,22 +19,47 @@ if (isset($_POST["delete"])) {
     exit();
   }
 }
+
+//function check identificationUser exist
+function checkIdentificationUser(string $data):bool {
+  $check = FALSE;
+  $user_manager = new UserManager();
+  $users = $user_manager->getUsers();
+  foreach ($users as $key => $user) {
+    if ($user->getidentificationUser() === $data) {
+      $check = TRUE;
+    }
+    else {
+      $check;
+    }
+  }
+  return $check;
+}
+
 $error = "";
+$field = "";
 //update book lending
 if (isset($_POST["bookLending"])) {
-  try {
-    $user = new User($_POST);
-  } catch (\Exception $e) {
-    $error = $e->getMessage();
-  }
-  if (empty($error)) {
-    $user = $user_manager->getUser($user);    
-    $book_manager->updateBookStatus($user);
-    header("Location: book.php?id={$_GET["id"]}");
-    exit();
+  if (!empty($_POST["identificationUser"])) {
+    try {
+      $user = new User($_POST);
+    } catch (\Exception $e) {
+      $error = $e->getMessage();
+    }
+    if (empty($error)) {
+      if (checkIdentificationUser($_POST["identificationUser"])) {
+        $user = $user_manager->getUser($user);
+        $lend = $book_manager->updateBookStatus($user);
+        header("Location: book.php?id={$_GET["id"]}");
+        exit();
+      }
+      else {
+        $field = "identifiant inconnu";
+      }
+    }
   }
   else {
-    $error = "Identifiant inconnu.";
+    $field = "Champs vide.";
   }
 }
 

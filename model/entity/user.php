@@ -3,7 +3,7 @@
 class User {
 
   const SEX = ["h", "f"];
-
+  //les identités sont en string pour mettre des 0
   protected int $id;
   protected ?Book $bookLend = null;
   protected string $lastname;
@@ -15,7 +15,7 @@ class User {
   protected string $sex;
   protected string $birthDate;
   protected string $borrowingDate;
-  protected int $identificationUser;
+  protected string $identificationUser;
 
   public function setId(int $id):self {
     $this->id = $id;
@@ -118,12 +118,12 @@ class User {
     return $this->borrowingDate;
   }
 
-  public function setIdentificationUser(int $identificationUser):self {
-    if (preg_match("/^[0-9]{9}$/",strval($identificationUser))) {
+  public function setIdentificationUser(string $identificationUser):self {
+    if (preg_match("/^[0-9]{9}$/",$identificationUser)) {
       $this->identificationUser = $identificationUser;
       return $this;
     }
-    throw new Exception("<li>Identification de 9 chiffres exactements</li>");
+    throw new Exception("Identification de 9 chiffres exactements");
   }
 
   public function getIdentificationUser() {

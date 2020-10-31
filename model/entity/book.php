@@ -1,9 +1,9 @@
 <?php
 // Classe représetant les livres stockés en base de données
 class Book {
-
+  //les identités sont en string pour mettre des 0
   protected int $id;
-  protected int $isbn;
+  protected string $isbn;
   protected string $title;
   protected string $author;
   protected string $publisher;
@@ -13,7 +13,7 @@ class Book {
   protected int $quantity;
   protected string $bookType;
   protected string $bookNature;
-  protected int $identificationBook;
+  protected string $identificationBook;
   protected ?User $userLend = null;
   protected ?string $userId;
 
@@ -35,12 +35,12 @@ class Book {
     return $this->userLend;
   }
 
-  public function setIsbn(int $isbn):self {
-    if (preg_match("/^[0-9]{13}$/",strval($isbn))) {
+  public function setIsbn(string $isbn):self {
+    if (preg_match("/^[0-9]{13}$/",$isbn)) {
       $this->isbn = $isbn;
       return $this;
     }
-    throw new Exception("<li>L'isbn contient 13 chiffres exactement</li>");
+    throw new Exception("L'isbn contient 13 chiffres exactement");
   }
 
   public function getIsbn() {
@@ -52,7 +52,7 @@ class Book {
       $this->title = $title;
       return $this;
     }
-    throw new Exception("<li>Titre entre 2 et 100 caractères</li>");
+    throw new Exception("Titre entre 2 et 100 caractères");
   }
 
   public function getTitle() {
@@ -64,7 +64,7 @@ class Book {
       $this->author = $author;
       return $this;
     }
-    throw new Exception("<li>Auteur entre 2 et 100 caractères</li>");
+    throw new Exception("Auteur entre 2 et 100 caractères");
   }
 
   public function getAuthor() {
@@ -76,7 +76,7 @@ class Book {
       $this->publisher = $publisher;
       return $this;
     }
-    throw new Exception("<li>Nom de l'éditeur entre 2 et 100 caractères</li>");
+    throw new Exception("Nom de l'éditeur entre 2 et 100 caractères");
   }
 
   public function getPublisher() {
@@ -88,7 +88,7 @@ class Book {
       $this->publicationYear = $publicationYear;
       return $this;
     }
-    throw new Exception("<li>Année non conforme</li>");
+    throw new Exception("Année non conforme");
   }
 
   public function getPublicationYear() {
@@ -100,7 +100,7 @@ class Book {
       $this->pagesNumber = $pagesNumber;
       return $this;
     }
-    throw new Exception("<li>Nombre de pages non conformes</li>");
+    throw new Exception("Nombre de pages non conformes");
   }
 
   public function getPagesNumber() {
@@ -108,11 +108,8 @@ class Book {
   }
 
   public function setSummary(string $summary):self {
-    if (preg_match("/^[0-9a-zA-Z-'&@#_^éèàç()ù°\/\".+*;:!? ]{2,}/",$summary)) {
-      $this->summary = $summary;
-      return $this;
-    }
-    throw new Exception("<li>Résumé à partir de 2 caractères.</li>");
+    $this->summary = $summary;
+    return $this;
   }
 
   public function getSummary() {
@@ -124,7 +121,7 @@ class Book {
       $this->quantity = $quantity;
       return $this;
     }
-    throw new Exception("<li>Quantitée hors norme.</li>");
+    throw new Exception("Quantitée hors norme.");
   }
 
   public function getQuantity() {
@@ -136,7 +133,7 @@ class Book {
       $this->bookType = $bookType;
       return $this;
     }
-    throw new Exception("<li>Type du livre entre 2 et 50 caractères</li>");
+    throw new Exception("Type du livre entre 2 et 50 caractères");
   }
 
   public function getBookType() {
@@ -148,19 +145,19 @@ class Book {
       $this->bookNature = $bookNature;
       return $this;
     }
-    throw new Exception("<li>Nature du livre entre 2 et 50 caractères</li>");
+    throw new Exception("Nature du livre entre 2 et 50 caractères");
   }
 
   public function getBookNature() {
     return $this->bookNature;
   }
 
-  public function setIdentificationBook(int $identificationBook):self {
-    if (preg_match("/^[0-9]{10}$/",strval($identificationBook))) {
+  public function setIdentificationBook(string $identificationBook):self {
+    if (preg_match("/^[0-9]{10}$/",$identificationBook)) {
       $this->identificationBook = $identificationBook;
       return $this;
     }
-    throw new Exception("<li>Identité du livre : 10 chiffres exactements</li>");
+    throw new Exception("Identité du livre : 10 chiffres exactements");
   }
 
   public function getIdentificationBook() {

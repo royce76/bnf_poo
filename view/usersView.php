@@ -34,7 +34,7 @@ include 'view/template/header.php';
       <?php endif; ?>
     </div>
     <div class="col-10 mx-auto my-4 text-center">
-      <h3>Vos abonnées</h3>
+      <h3>Vos abonnés</h3>
     </div>
     <div class="col-10 mx-auto my-4">
       <table class="table">
