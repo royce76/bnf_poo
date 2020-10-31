@@ -61,7 +61,7 @@ include 'view/template/header.php';
     <form class="col-10 mx-auto my-4" action="" method="POST">
       <div class="form-group">
         <label for="isbn">ISBN :</label>
-        <input type="number" class="form-control" id="isbn" name="isbn" aria-describedby="emailHelp">
+        <input type="text" class="form-control" id="isbn" name="isbn" aria-describedby="emailHelp">
       </div>
       <div class="form-group">
         <label for="title">Titre :</label>
@@ -101,7 +101,7 @@ include 'view/template/header.php';
       </div>
       <div class="form-group">
         <label for="identificationBook">Identité :</label>
-        <input type="number" class="form-control" id="identificationBook" name="identificationBook">
+        <input type="text" class="form-control" id="identificationBook" name="identificationBook">
       </div>
       <input type="submit" class="btn btn-primary" name="add" value="Ajouter">
     </form>

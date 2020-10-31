@@ -11,7 +11,12 @@ include 'view/template/header.php';
         <?=$error?>
       </div>
     <?php endif; ?>
-    <div class="card col-5 mx-auto my-4" style="width: 18rem;">
+    <?php if ($field !== ""): ?>
+      <div class="alert alert-danger col-10 mx-auto my-4 text-center" role="alert">
+        <?=$field?>
+      </div>
+    <?php endif; ?>
+    <div class="card col-10 mx-auto my-4" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title"><?=$book->getTitle()?></h5>
         <p class="card-text"><?=$book->getSummary()?></p>
@@ -61,7 +66,7 @@ include 'view/template/header.php';
           <form action="" method="POST">
             <div class="form-group">
               <label for="identificationUser">Entrez l'identifiant de l'emprunteur :</label>
-              <input type="number" class="form-control" id="identificationUser " placeholder="Identifiant abonné" name="identificationUser">
+              <input type="text" class="form-control" id="identificationUser " placeholder="Identifiant abonné" name="identificationUser">
             </div>
             <button type="submit" class="btn btn-primary mb-2" name="bookLending">Valider l'emprunt</button>
           </form>

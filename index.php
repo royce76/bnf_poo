@@ -7,7 +7,7 @@ $book_manager = new BookManager();
 $list_book = $book_manager->getBooks();
 
 //function check isbn exist
-function checkIsbn(int $data):bool {
+function checkIsbn(string $data):bool {
   $check = FALSE;
   $book_manager = new BookManager();
   $list_book = $book_manager->getBooks();
@@ -23,7 +23,7 @@ function checkIsbn(int $data):bool {
 }
 
 //function check identificationBook exist
-function checkIdentificationBook(int $data):bool {
+function checkIdentificationBook(string $data):bool {
   $check = FALSE;
   $book_manager = new BookManager();
   $list_book = $book_manager->getBooks();

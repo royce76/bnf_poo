@@ -44,5 +44,5 @@ ENGINE=InnoDB;
 
 INSERT INTO Book(isbn, title, author, publisher, publicationYear, pagesNumber, summary, quantity, bookType, bookNature, identificationBook, userId)
 VALUES
-("9782266259453", "Elle&lui", "Marc Levy", "Pocket", "2015", "373", "Elle est actrice. Lui est écrivain", "4", "Roman", "Romance", "0123456789", 2),
+("9782266259453", "Elle&lui", "Marc Levy", "Pocket", "2015", "373", "Elle est actrice. Lui est écrivain", "4", "Roman", "Romance", "1234567890", 2),
 ("9782266243261", "BEAUTIFUL BASTARD", "Christina Lauren", "Pocket", "2013", "328", "Brillante et déterminée,Chloé n'a qu'un problème dans la vie...", "2", "Roman", "Erotique", "9876543210", null);
