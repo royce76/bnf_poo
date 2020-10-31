@@ -7,7 +7,7 @@ class Book {
   protected string $title;
   protected string $author;
   protected string $publisher;
-  protected int $publicationYear;
+  protected string $publicationYear;
   protected int $pagesNumber;
   protected string $summary;
   protected int $quantity;
@@ -40,7 +40,7 @@ class Book {
       $this->isbn = $isbn;
       return $this;
     }
-    throw new Exception("L'isbn contient 13 chiffres exactement");
+    throw new Exception("L'ISBN contient 13 chiffres exactement");
   }
 
   public function getIsbn() {
@@ -83,7 +83,7 @@ class Book {
     return $this->publisher;
   }
 
-  public function setPublicationYear(int $publicationYear):self {
+  public function setPublicationYear(string $publicationYear):self {
     if (preg_match("/^[0-9]{4}$/",strval($publicationYear))) {
       $this->publicationYear = $publicationYear;
       return $this;
@@ -100,7 +100,7 @@ class Book {
       $this->pagesNumber = $pagesNumber;
       return $this;
     }
-    throw new Exception("Nombre de pages non conformes");
+    throw new Exception("Nombre de pages non conforme");
   }
 
   public function getPagesNumber() {
@@ -121,7 +121,7 @@ class Book {
       $this->quantity = $quantity;
       return $this;
     }
-    throw new Exception("Quantitée hors norme.");
+    throw new Exception("Quantitée hors norme");
   }
 
   public function getQuantity() {
@@ -157,7 +157,7 @@ class Book {
       $this->identificationBook = $identificationBook;
       return $this;
     }
-    throw new Exception("Identité du livre : 10 chiffres exactements");
+    throw new Exception("Identité du livre : 10 chiffres exactement");
   }
 
   public function getIdentificationBook() {

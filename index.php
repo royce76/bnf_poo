@@ -6,38 +6,6 @@ require 'model/entity/Book.php';
 $book_manager = new BookManager();
 $list_book = $book_manager->getBooks();
 
-//function check isbn exist
-function checkIsbn(string $data):bool {
-  $check = FALSE;
-  $book_manager = new BookManager();
-  $list_book = $book_manager->getBooks();
-  foreach ($list_book as $key => $book) {
-    if ($book->getIsbn() === $data) {
-      $check = TRUE;
-    }
-    else {
-      $check;
-    }
-  }
-  return $check;
-}
-
-//function check identificationBook exist
-function checkIdentificationBook(string $data):bool {
-  $check = FALSE;
-  $book_manager = new BookManager();
-  $list_book = $book_manager->getBooks();
-  foreach ($list_book as $key => $book) {
-    if ($book->getIdentificationBook() === $data) {
-      $check = TRUE;
-    }
-    else {
-      $check;
-    }
-  }
-  return $check;
-}
-
 $errors = "";
 $error = "";
 $field = "";
@@ -45,8 +13,8 @@ $entries = array_filter($_POST);
 //Look for form addBook
 if (isset($_POST["add"]) && !empty($_POST["add"])) {
   if (count($entries) === count($_POST)) {
-    if (!checkIsbn($_POST["isbn"])) {
-      if (!checkIdentificationBook($_POST["identificationBook"])) {
+    if ($book_manager->checkIsbn($_POST["isbn"]) === FALSE) {
+      if ($book_manager->checkIdentificationBook($_POST["identificationBook"]) === FALSE) {
         try {
           $book = new Book($_POST);
         } catch (\Exception $e) {
@@ -59,21 +27,21 @@ if (isset($_POST["add"]) && !empty($_POST["add"])) {
             exit();
           }
           else {
-            $errors = "La base de donnée a eu un problème";
+            $errors = "La base de données a eu un problème";
             // throw new Exception("transaction non effectué");
           }
         }
       }
       else {
-        $field = "Identité du livre déjà utilisé.";
+        $field = "Identité du livre déjà utilisée";
       }
     }
     else {
-      $field = "Isbn existant.";
+      $field = "ISBN existant";
     }
   }
   else {
-    $field = "Les champs ne sont pas tous remplis.";
+    $field = "Les champs ne sont pas tous remplis";
   }
 }
 
